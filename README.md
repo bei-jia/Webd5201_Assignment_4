@@ -13,7 +13,7 @@ rails new assignment4
 
 4. Database creation:
 Database Setup: rails generate scaffold Company company_name:string company_founder:string company_founding_time:string company_headcount:integer headquarter_address:string.
-Database Migrations: Use rails db:migrate to apply database schema changes.
+Database Migrations: Use rails db: migrate to apply database schema changes.
 
 5. Pages and Functionalities:
     * Home Page (http://localhost:3000/):
@@ -24,7 +24,7 @@ Database Migrations: Use rails db:migrate to apply database schema changes.
         A search bar allows filtering companies by name or founder.
 
     * New Company Page (http://localhost:3000/companies/new):
-        Users can create a new company by filling out a form with fields for company name, founder, founding time, headcount, headquarters address, and an option to upload an image for the founder.
+        Users can create a new company by filling out a form with fields for a company name, founder, founding time, headcount, headquarters address, and an option to upload an image for the founder.
         Form validation ensures all fields are filled, and headcount is a number.
         On form submission, if validation passes, the new company is added to the database, and the user is redirected to the home page with a success notice.
 
@@ -38,14 +38,14 @@ Database Migrations: Use rails db:migrate to apply database schema changes.
         A confirmation prompt ensures accidental deletions are prevented.
 
 6. Data Validation:
-Presence: All fields in the form (name, founder, founding time, headcount, and headquarters address) are required to be filled out.
+Presence: All fields in the form (name, founder, founding time, headcount, and headquarters address) must be filled out.
 Numericality: The headcount field must be a number greater than zero.
 Image File: If a user chooses to upload an image for the founder, the image is validated for the correct format and file size (if such validations are set).
 
 7.  New Feature for this assignment:
 Image Upload Feature:
 When creating or editing a company, users can upload an image for the founder by selecting a file from their local device.
-The image is stored in the application's storage system (use Active Storage library).
+The image is stored in the application's storage system (use the Active Storage library).
 
 8. How to use:
     * To view companies, simply navigate to the home page.
