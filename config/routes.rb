@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # change the root 
   root 'companies#index'
   resources :companies
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
