@@ -1,0 +1,55 @@
+<!-- app/views/companies/edit.html.erb -->
+<%= provide(:title, 'Edit Company') %>
+<div class="form-container">
+  <h2>Edit Company</h2>
+  <%= link_to 'Back to companies', companies_path %>
+
+  <%= form_for @company, html: { multipart: true } do |f| %>
+    <% if @company.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
+        <ul>
+          <% @company.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :company_name, class: 'form-label' %>
+      <%= f.text_field :company_name, class: 'form-control', required: true %>
+    </div>
+    <div class="field">
+      <%= f.label :company_founder, class: 'form-label' %>
+      <%= f.text_field :company_founder, class: 'form-control', required: true %>
+    </div>
+    <% if @company.founder_image.attached? %>
+    <div class="field">
+      <%= image_tag(url_for(@company.founder_image)) %>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :founder_image, 'Founder Image:' %>
+    <%= f.file_field :founder_image %>
+  </div>
+    <div class="field">
+      <%= f.label :company_founding_time, class: 'form-label' %>
+      <%= f.text_field :company_founding_time, class: 'form-control', required: true %>
+    </div>
+    <div class="field">
+      <%= f.label :company_headcount, class: 'form-label' %>
+      <%= f.number_field :company_headcount, class: 'form-control', required: true, min: 1 %>
+    </div>
+    <div class="field">
+      <%= f.label :headquarter_address, class: 'form-label' %>
+      <%= f.text_field :headquarter_address, class: 'form-control', required: true %>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Update Company', class: 'btn' %>
+    </div>
+  <% end %>
+  
+</div>
+

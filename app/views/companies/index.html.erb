@@ -1,0 +1,50 @@
+<!-- app/views/companies/index.html.erb -->
+<h1>Companies</h1>
+
+<%= form_with(url: companies_path, method: :get, local: true) do %>
+  <div>
+    <%= label_tag :search, "Search by Company Name or Founder:" %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search" %>
+  </div>
+<% end %>
+
+
+
+<table class="table-bordered">
+  <thead>
+    <tr>
+      <th>Company Name</th>
+      <th>Company Founder</th>
+      <th>Founder image</th>
+      <th>Founding Time</th>
+      <th>Headcount</th>
+      <th>Headquarter Address</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <!-- table content -->
+  <tbody>
+    <% @companies.each do |company| %>
+      <tr>
+        <td><%= company.company_name %></td>
+        <td><%= company.company_founder %></td>
+        <td>
+        <% if company.founder_image.attached? %>
+          <%= image_tag(url_for(company.founder_image), class: 'founder-image') %>
+        <% end %>
+        </td>
+        <td><%= company.company_founding_time %></td>
+        <td><%= company.company_headcount %></td>
+        <td><%= company.headquarter_address %></td>
+        <td>
+          <%= link_to 'Edit', edit_company_path(company) %> |
+          <%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Company', new_company_path %>

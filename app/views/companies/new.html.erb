@@ -1,0 +1,44 @@
+<!-- app/views/companies/new.html.erb -->
+<%= provide(:title, 'New Company') %>
+<div class="form-container">
+  <h2>New Company</h2>
+  <%= link_to 'Back to companies', companies_path %>
+  <%= form_for(@company, html: { class: 'form-horizontal', multipart: true }) do |f| %>
+    <% if @company.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
+        <ul>
+        <% @company.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :company_name, class: 'form-label' %>
+      <%= f.text_field :company_name, class: 'form-control', required: true %>
+    </div>
+    <div class="field">
+    <%= f.label :company_founder, class: 'form-label' %>
+    <%= f.text_field :company_founder, required: true %>
+    <%= f.label :founder_image, 'Founder Image:', class: 'form-label' %>
+    <%= f.file_field :founder_image %>
+    </div>
+    <div class="field">
+      <%= f.label :company_founding_time, class: 'form-label' %>
+      <%= f.text_field :company_founding_time, class: 'form-control', required: true %>
+    </div>
+    <div class="field">
+      <%= f.label :company_headcount, class: 'form-label' %>
+      <%= f.number_field :company_headcount, class: 'form-control', required: true, min: 1 %>
+    </div>
+    <div class="field">
+      <%= f.label :headquarter_address, class: 'form-label' %>
+      <%= f.text_field :headquarter_address, class: 'form-control', required: true %>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Create Company', class: 'btn' %>
+    </div>
+  <% end %>
+</div>
